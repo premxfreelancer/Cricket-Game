@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Run Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        
+        #image {
+          width: 50vw;
+          height: 50vw;
+          display: block;
+        }
+        .con2 {
+          display: none;
+        }
+        .result {
+          
+        }
+    </style>
+</head>
+<body>
+  
+  
+  <audio id="sounddotball" src="sounds/dotball.mp3"></audio>
+  
+    <audio id="soundsingle" src="sounds/single.mp3"></audio>
+    <audio id="sounddouble" src="sounds/double.mp3"></audio>
+    <audio id="soundsix" src="sounds/six.mp3"></audio>
+    <audio id="soundfour" src="sounds/four.mp3"></audio>
+    <audio id="soundwicket" src="sounds/wicket.mp3"></audio>
+  
+  
+  
+  
+  
+  
+  
+    <div class="container" id="con1">
+        <h1>Cricket Run Game</h1>
+        <button onclick="play()">Play</button>
+       
+       
+<hr>
+        <p id="result"></p>
+        <p>Wickets: <span id="wicketCounter">0</span></p>
+        <p>Balls Played: <span id="ballCounter">0</span></p>
+        <p>Over Played: <span id="overCounter">0</span></p>
+        <p>Total Runs: <span id="runCounter">0</span></p>
+    </div>
+
+<div class="con2" id="con2">
+          <h1>Cricket Run Game</h1>
+          <div class="result">
+            
+          </div>
+          
+</div>
+
+
+
+    <script>
+        var wicketCount = 0;
+        var ballCount = 0;
+        var runCount = 0;
+var overCount = 0;
+function overcheck() {
+  if (ballCount === 120) { 
+  var con2 = document.getElementById("con2");
+var con1s = document.getElementById("con1");
+con2.style.display = 'block';
+con1s.style.display = 'none';
+};
+};
+setInterval(overcheck, 100);
+
+        function play() {
+          
+    if (ballCount === 120) {
+     var con2 = document.getElementById("con2");
+var con1s = document.getElementById("con1");
+con2.style.display = 'block';
+con1s.style.display = 'none';
+
+    } else {
+          var images = document.getElementById("image");
+
+
+            ballCount++;
+            overCount = Math.floor(ballCount/6);
+
+            document.getElementById("ballCounter").textContent = ballCount;
+document.getElementById("overCounter").textContent = overCount;
+            var randomNum = Math.random() * 100;
+            var result = "";
+            if (randomNum < 30) {
+              dotball.play();
+                result = "Dot Ball";
+            } else if (randomNum < 60) {
+                result = "Single";
+                runCount += 1;
+                single.play();
+            } else if (randomNum < 70) {
+                result = "Double";
+                runCount += 2;
+                double.play();
+            } else if (randomNum < 80) {
+                result = "Six!";
+                runCount += 6;
+                six.play();
+            } else if (randomNum < 95) {
+                result = "Four!";
+                runCount += 4;
+                four.play();
+            } else {
+                result = "Wicket!";
+                wicketCount++;
+                wicket.play();
+            }
+            document.getElementById("result").textContent = result;
+            document.getElementById("wicketCounter").textContent = wicketCount;
+            document.getElementById("runCounter").textContent = runCount;
+     
+    }
+        }
+        
+        
+    </script>
+    
+    
+    <script src="main.js">main.js</script>
+</body>
+</html>
